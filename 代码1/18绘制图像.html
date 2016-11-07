@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #cvs {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="cvs" width="500" height="500"></canvas>
+    <img id="img" src="./imgs/NPCrabbitbaby.png" style="display: none;">
+    <script>
+        var cvs = document.getElementById('cvs');
+        var img = document.getElementById('img');
+        var ctx = cvs.getContext('2d');
+
+        /*
+        * 绘制图像，drawImage三参数：
+        * ctx.drawImage( 图像资源，x坐标，y坐标 )
+        * 把图像绘制到指定的位置。
+        * */
+
+       /* // 在使用某个img之前，必须监听它onload事件
+        img.onload = function () {
+            ctx.drawImage( img, 10, 10 );
+        }*/
+
+        /*
+         * 绘制图像，drawImage五参数：
+         * ctx.drawImage( 图像资源，x坐标，y坐标, 图像显示的宽，图像显示的高 )
+         * 把图像按照指定的大小绘制到指定的位置。
+         * */
+
+       /* // 在使用某个img之前，必须监听它onload事件
+        img.onload = function () {
+            ctx.drawImage( img, 10, 10, 100, 200 );
+        }*/
+
+        /*
+         * 绘制图像，drawImage九参数：
+         * ctx.drawImage( 图像资源，
+         * 裁剪的x坐标，裁剪的y坐标，裁剪多宽，裁剪多高，
+         * x坐标，y坐标, 图像显示的宽，图像显示的高 )
+         * 把裁剪到的图像按照指定的大小绘制到指定的位置。
+         * */
+
+        // 在使用某个img之前，必须监听它onload事件
+        img.onload = function () {
+            ctx.drawImage( img,
+                    0, 0, 40, 65,
+                    10, 10, 100, 200 );
+        }
+
+    </script>
+</body>
+</html>

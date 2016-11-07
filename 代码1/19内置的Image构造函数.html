@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #cvs {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="cvs" width="500" height="500"></canvas>
+    <script>
+        var cvs = document.getElementById('cvs');
+        var ctx = cvs.getContext('2d');
+
+        // 相当于document.createElement('img');
+        var img = new Image();
+        img.src = './imgs/NPCrabbitbaby-2.png';
+
+        img.onload = function () {
+            ctx.drawImage( img,
+                    0, 0, 40, 65,
+                    10, 10, 200, 350);
+            console.log(img.width);
+            console.log(img.height);
+        };
+    </script>
+</body>
+</html>

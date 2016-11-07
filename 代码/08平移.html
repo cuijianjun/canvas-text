@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #cvs {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="cvs" width="500" height="500"></canvas>
+    <script>
+        var cvs = document.getElementById('cvs');
+        var ctx = cvs.getContext('2d');
+
+        /*
+        * 平移
+        * ctx.translate( 在当前基础上x轴平移多少，在当前基础上y轴平移多少 )
+        * 这里平移的是画布的坐标系，平移不会影响已经绘制好的图形，平移会累加。
+        * */
+
+        ctx.fillRect( 10, 10, 30, 30 );
+
+        // x轴平移100
+        ctx.translate( 100, 100 );
+
+        // 坐标系平移之后，按照同样的矩形坐标绘制，发现该矩形位置和上面的不一样。
+        ctx.fillRect( 10, 10, 30, 30 );
+
+        // x轴再平移100
+        ctx.translate( 100, 100 );
+
+        // 坐标系平移之后，按照同样的矩形坐标绘制，发现该矩形位置和上面的不一样。
+        ctx.fillRect( 10, 10, 30, 30 );
+    </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #cvs {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+<canvas id="cvs" width="500" height="500"></canvas>
+<script>
+    var cvs = document.getElementById('cvs');
+    var ctx = cvs.getContext('2d');
+
+    // 从10，10点开始绘制一个宽100，高100的渐变矩形。
+    // 颜色总量为255，可以除以高，得到一个高度对应的颜色比值，然后使用i乘这个比值。
+    var i = 0; lineNum = 100;
+    for ( ; i < 100; i++ ) {
+        ctx.beginPath();
+        ctx.moveTo( 10, 10 + i );
+        ctx.lineTo( 110, 10 + i );
+        ctx.strokeStyle = 'rgb(' + Math.ceil(255 / 100 * i) + ', 0, 0)';
+        ctx.stroke();
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<canvas id="canvas" height="800" width="800"></canvas>
+<script>
+window.onload=function(){
+//得到现在当前的的时间
+var then=new Date().getTime();
+var canvas=document.getElementById("canvas");
+//建立一个2d场景
+var ctx=canvas.getContext("2d");
+//定义一个数组来接收下面创建对象产生的值
+var arr=[];
+//返回透明度
+ctx.globalAlpha=0.5;
+//填充颜色
+ctx.fillStyle="#8e6ca7";
+setInterval(function(){
+//得到每个40ms之后当前的时间
+var nowTime=new Date().getTime();
+var lag=(nowTime-then)/1000;
+//赋值
+then=nowTime;
+//清除canvas
+ctx.clearRect(0,0,canvas.width,canvas.height);
+for(var i=0;i<arr.length;i++){
+arr[i].num+=5;
+//缩放比例让他越来越小
+arr[i].scaleNum-=0.005;
+arr[i].distanceNum-=(0.1*25)*lag;
+ctx.beginPath();
+ctx.save();
+//坐标点把他位移到中间
+ctx.translate(canvas.width/2,canvas.height/2);
+//旋转
+ctx.rotate(arr[i].num*Math.PI/180);
+//进行比例缩放
+ctx.scale(arr[i].scaleNum,arr[i].scaleNum);
+//绘制矩形
+ctx.fillRect(arr[i].distanceNum,0,80,60);
+ctx.restore();
+//判断是否小于0
+if(arr[i].scaleNum<0){
+arr.splice(i,1);
+}
+}
+},100);
+//每隔一段时间生成一次然后推入数组中
+setInterval(function(){
+//一个对象
+var arrInit={
+num:0,
+scaleNum:1,
+distanceNum:200
+};
+arr.push(arrInit);
+},120);
+}
+</script>
+</body>
+</html>

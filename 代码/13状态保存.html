@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #cvs {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="cvs" width="500" height="500"></canvas>
+    <script>
+        var cvs = document.getElementById('cvs');
+        var ctx = cvs.getContext('2d');
+
+        /*
+        * save方法会把绘图环境自身所有的属性保存一份，
+        * 其中有些属性对我们来说是可见的，
+        * 即可以通过ctx来获取到的属性值。
+        *
+        * 没有和路径相关的状态，即save不会保存路径。
+        * 一句话，状态的保存与回滚，与路径没有任何瓜葛。
+        * */
+
+        // 画一个矩形路径，并save
+        ctx.rect(10, 10, 30, 30);
+        ctx.save();
+
+        // 清除路径
+        ctx.beginPath();
+
+        // 看看能否把之前的路径回滚出来，发现不能
+        ctx.restore();
+        ctx.stroke();
+    </script>
+</body>
+</html>

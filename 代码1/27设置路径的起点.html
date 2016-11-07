@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #cvs {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+<canvas id="cvs" width="500" height="500"></canvas>
+<script>
+    var cvs = document.getElementById('cvs');
+    var ctx = cvs.getContext('2d');
+
+    /*
+    * moveTo的本质其实是设置路径的起点。
+    * 但是lineTo也可以设置路径的起点。
+    * */
+
+    // 在一个没有路径起点的路径中，第一个lineTo就相当于moveTo。
+    ctx.lineTo( 0, 0 );
+    ctx.lineTo( 100, 10 );
+    ctx.stroke();
+</script>
+</body>
+</html>

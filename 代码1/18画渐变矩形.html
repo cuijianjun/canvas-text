@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #cvs {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+<canvas id="cvs" width="500" height="500"></canvas>
+<script>
+    var cvs = document.getElementById('cvs');
+    var ctx = cvs.getContext('2d');
+
+    ctx.strokeStyle = 'rgb(255, 0, 0)';
+    ctx.moveTo( 210, 10 );
+    ctx.lineTo( 310, 10 );
+    ctx.stroke();
+
+    /*------------------------------------------------------*/
+
+    // 从单颜色通道值为0开始，一直到255为止。
+    var i = 0, lineNum = 255;
+    for ( ; i <= lineNum; i++ ) {
+        ctx.beginPath();
+        ctx.moveTo( 10, 10 + i );
+        ctx.lineTo( 110, 10 + i );
+        ctx.strokeStyle = 'rgb(' + i + ', 0, 0)';
+        ctx.stroke();
+    }
+</script>
+</body>
+</html>

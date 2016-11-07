@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #cvs {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="cvs" width="500" height="500"></canvas>
+    <script src="sprite.js"></script>
+    <script>
+        var cvs = document.getElementById('cvs');
+        var ctx = cvs.getContext('2d');
+
+        var img = new Image();
+        img.src = './imgs/TANK-SDDR_2.png';
+        img.addEventListener('load', function () {
+            var sprite = new Sprite( ctx, 10, 10, img, 4, 4 ); // 创建实例
+            // 不断地绘制小人的不同帧，实现帧动画
+            setInterval(function () {
+                ctx.clearRect(0, 0, cvs.width, cvs.height); // 先清除画布
+                sprite.draw();
+                sprite.update();
+            }, 1000 / 30);
+        });
+    </script>
+</body>
+</html>

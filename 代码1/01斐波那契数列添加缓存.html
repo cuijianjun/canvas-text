@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        /*
+        * 修改三步骤：
+        * 1、定义一个缓存数组
+        * 2、函数中优先使用缓存的数据
+        * 3、如果没有缓存，那么先缓存结果，再return
+        * */
+        /*var fibs = [];
+        function fibonacci( n ) {
+            var result;
+
+            if ( fibs[n] ) {
+                return fibs[n];
+            }
+
+            if ( n === 0 || n === 1 ) {
+                result = 1;
+            }else {
+                result = fibonacci( n - 2 ) + fibonacci( n - 1 );
+            }
+
+            fibs[n] = result;
+            return result;
+        }
+
+        console.log(fibonacci(3));
+        console.log(fibonacci(100));*/
+
+        /*------------------------------------------------------------------*/
+
+        var fibonacci = (function (){
+            var fibs = [];
+            return function( n ) {
+                var result;
+                if ( fibs[n] ) {
+                    result = fibs[n];
+                }else {
+                    result = (n === 0 || n === 1)? 1: fibonacci( n - 2 ) + fibonacci( n - 1 );
+                    fibs[n] = result;
+                }
+                return result;
+            }
+        }());
+        console.log(fibonacci(100));
+    </script>
+</body>
+</html>

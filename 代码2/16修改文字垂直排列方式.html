@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #cvs {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+<canvas id="cvs" width="700" height="500"></canvas>
+<script>
+    var cvs = document.getElementById('cvs');
+    var ctx = cvs.getContext('2d');
+
+    /*
+    * 设置文本样式
+    * ctx.font = 语法和css一样。
+    * */
+    ctx.font = '500 2em 微软雅黑';
+
+    /*
+    * 设置文字垂直排列方式
+    * ctx.textBaseline = top、middle、bottom、alphabetic、 hanging、ideographic
+    * 默认为值为alphabetic(字母基线)。
+    *
+    * top在四线三格的上面；
+    * middle在四线三格的中间；
+    * bottom在四线三格的下间；
+    * alphabetic在四线三格中第三条线；
+    * hanging相当于四线三格中第一条线；
+    * ideographic表示和bottom基本一致。
+    * */
+
+    ctx.moveTo( 0, 100 );
+    ctx.lineTo( cvs.width, 100 );
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    ctx.textBaseline = 'top';
+    ctx.fillText( '哈哈', 10, 100 );
+
+    ctx.textBaseline = 'middle';
+    ctx.fillText( '呵呵', 110, 100 );
+
+    ctx.textBaseline = 'bottom';
+    ctx.fillText( '嘿嘿', 210, 100 );
+
+    ctx.textBaseline = 'alphabetic';
+    ctx.fillText( '嘻嘻', 310, 100 );
+
+    ctx.textBaseline = 'hanging';
+    ctx.fillText( '咯咯', 410, 100 );
+
+    ctx.textBaseline = 'ideographic';
+    ctx.fillText( '嘎嘎', 510, 100 );
+</script>
+</body>
+</html>

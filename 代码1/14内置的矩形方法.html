@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #cvs {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="cvs" width="500" height="500"></canvas>
+    <script>
+        var cvs = document.getElementById('cvs');
+        var ctx = cvs.getContext('2d');
+
+        /*
+        * rect
+        * 用来画矩形路径的。
+        * ctx.rect( x, y, w, h );
+        * */
+
+        ctx.rect( 10, 10, 100, 100 );
+        ctx.fill();
+
+        /*
+        * strokeRect
+        * 用来绘制描边矩形，不会产生任何路径。
+        * ctx.strokeRect( x, y, w, h );
+        * */
+        ctx.strokeRect(150, 10, 100, 100);
+
+        /*
+         * fillRect
+         * 用来绘制填充矩形，不会产生任何路径。
+         * ctx.strokeRect( x, y, w, h );
+         * */
+        ctx.fillRect(300, 10, 100, 100);
+
+        /*
+        * 测试，发现只有第一个方法产生了路径，
+        * 其他两个方法没有产生任何路径。
+        * */
+        ctx.fillStyle = 'red';
+        ctx.fill();
+    </script>
+</body>
+</html>

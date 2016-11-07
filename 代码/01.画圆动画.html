@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #cvs {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+   <canvas id="cvs" width="500" height="500"></canvas>
+
+<script>
+    var cvs=document.getElementById("cvs");
+    var ctx=cvs.getContext("2d");
+
+    ctx.fillStyle = 'green';
+    var startAngle = -Math.PI / 2,
+            angle = startAngle,
+            x = 200, y = 200,
+            r = 100;
+    var intervalId = setInterval(function () {
+        // 清除之前绘制的内容
+        ctx.clearRect( 0, 0, cvs.width, cvs.height );
+        // 角度增量
+        angle += 0.1;
+        // 判断是否停止计时器
+        if ( angle >= Math.PI * 3 / 2 ) {
+            clearInterval( intervalId);
+            angle = Math.PI * 3 / 2;
+            console.log( '绘制完成' );
+        }
+        // 绘制
+        ctx.moveTo( x, y );
+        ctx.arc( x, y, r, startAngle, angle );
+        ctx.fill();
+    }, 20);
+
+</script>
+</body>
+</html>

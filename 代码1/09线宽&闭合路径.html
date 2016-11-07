@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #cvs {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="cvs" width="500" height="500"></canvas>
+    <script>
+        var cvs = document.getElementById('cvs');
+        var ctx = cvs.getContext('2d');
+
+        function strokeSJX( x, y, w, h, style ) {
+            ctx.beginPath();   // 为了防止重绘之前的路径，先把他们清除掉
+            ctx.moveTo(x, y);
+            ctx.lineTo(x + w / 2, y + h);
+            ctx.lineTo(x - w / 2, y + h);
+            // ctx.lineTo(x, y);  // 有了closePath，最后一条不用画了
+            // ctx.lineTo(x + w / 2, y + h);  // 为了解决锯齿，重画一下
+            ctx.closePath(); // 当前路径的结束点和起点连一条路径
+            ctx.strokeStyle = style;
+            ctx.stroke();
+        }
+
+        /*
+        * 线宽：
+        * ctx.lineWidth = 5;
+        * */
+
+        console.log(ctx.lineWidth);
+        ctx.lineWidth = 10;
+        strokeSJX( 100, 100, 80, 60, 'yellow' );
+
+        /*
+        * 闭合路径：
+        * ctx.closePath()
+        * 从当前路径的结束点，到起始点相连。
+        * */
+    </script>
+</body>
+</html>

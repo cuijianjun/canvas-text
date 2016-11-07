@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #cvs {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="cvs" width="500" height="500"></canvas>
+    <script>
+        var cvs = document.getElementById('cvs');
+        var ctx = cvs.getContext('2d');
+
+        /*
+        * 画扇：
+        * 1、先设置路径起点为圆心
+        * 2、然后画弧
+        * 3、通过closePath方法自动把路径结束点与起点相连
+        * */
+
+        var x = 100, y = 100, r = 50;
+        ctx.moveTo( x, y );
+        ctx.arc( x, y, r, 0, Math.PI / 2 );
+        ctx.closePath();
+        ctx.stroke();
+    </script>
+</body>
+</html>

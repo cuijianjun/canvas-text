@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #cvs {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="cvs" width="800" height="500"></canvas>
+    <script>
+        var cvs = document.getElementById('cvs');
+        var ctx = cvs.getContext('2d');
+
+        /*for ( var i = 1; i <= 10; i++ ) {
+            ctx.beginPath();
+            ctx.arc( 50, 50, 30, 0, Math.PI * 2 / 10 * i );
+            ctx.stroke();
+        }*/
+
+        /*for ( var i = 1; i <= 10; i++ ) {
+            ctx.beginPath();
+            ctx.arc( 50 + (30 * 2 + 10) * (i - 1), 50, 30, 0, Math.PI * 2 / 10 * i );
+            ctx.stroke();
+        }*/
+
+        // 改活
+        var x = 50, y = 50, r = 20, space = 10;
+        for ( var i = 1; i <= 10; i++ ) {
+            ctx.beginPath();
+            ctx.arc( x + (r * 2 + space) * (i - 1), y, r, 0, Math.PI * 2 / 10 * i );
+            ctx.stroke();
+        }
+
+        for ( var i = 1; i <= 10; i++ ) {
+            ctx.beginPath();
+            ctx.arc( x + (r * 2 + space) * (i - 1), y + ( r * 2 + space  ) * 1, r, 0, Math.PI * 2 / 10 * i, true );
+            ctx.stroke();
+        }
+
+          for ( var i = 1; i <= 10; i++ ) {
+            ctx.beginPath();
+            ctx.arc( x + (r * 2 + space) * (i - 1), y + ( r * 2 + space ) * 2, r, 0, Math.PI * 2 / 10 * i );
+            ctx.fill();
+        }
+
+           for ( var i = 1; i <= 10; i++ ) {
+            ctx.beginPath();
+            ctx.arc( x + (r * 2 + space) * (i - 1), y + ( r * 2 + space ) * 3, r, 0, Math.PI * 2 / 10 * i, true );
+            ctx.fill();
+        }
+
+        /*
+        * 当调用fill方法的时候，会先自动closePath一次。
+        * */
+
+    </script>
+</body>
+</html>

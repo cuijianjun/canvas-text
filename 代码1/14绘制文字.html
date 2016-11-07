@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #cvs {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+<canvas id="cvs" width="500" height="500"></canvas>
+<script>
+    var cvs = document.getElementById('cvs');
+    var ctx = cvs.getContext('2d');
+
+    /*
+    * 设置文本样式
+    * ctx.font = 语法和css一样。
+    * */
+    ctx.font = '500 2em 微软雅黑';
+
+    /*
+    * 绘制描边文本
+    * ctx.strokeText( '文本', x, y, 限制文本最大长度(可选) )
+    * */
+    ctx.strokeText( '嘿！', 100, 100 );
+    ctx.fillRect( 100, 100, 2, 2 );  // 画一个参考点，观察绘制文字时，坐标在文本的位置。
+
+    /*
+     * 绘制填充文本
+     * ctx.strokeText( '文本', x, y, 限制文本最大长度(可选) )
+     * */
+    ctx.fillText( '恩那咋地！', 200, 100 );
+</script>
+</body>
+</html>

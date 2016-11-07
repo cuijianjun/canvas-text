@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        img {
+            display: none;
+            width: 100px;
+            height: 100px;
+        }
+        #cvs {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <img src="youyouyou.jpg" />
+    <!--画布默认300*150-->
+    <canvas id="cvs" width="500" height="500"></canvas>
+    <script>
+        var cvs = document.getElementById('cvs');
+        var ctx = cvs.getContext('2d');
+
+        ctx.moveTo(10, 10);
+        ctx.lineTo(110, 10);
+        ctx.lineTo(110, 110);
+        ctx.lineTo(10, 110);
+        ctx.lineTo(10, 10);
+        ctx.stroke();
+    </script>
+</body>
+</html>

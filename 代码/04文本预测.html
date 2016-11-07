@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #cvs {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="cvs" width="500" height="500"></canvas>
+    <script>
+        var cvs = document.getElementById('cvs');
+        var ctx = cvs.getContext('2d');
+
+        /*
+        * 文字预测
+        * ctx.measureText( 文本 )
+        * 返回值：一个对象,该对象有一个width属性，代表这段绘制时所需的长度
+        * */
+
+        ctx.font = '20px 圆体';
+        console.log(ctx.measureText('测试234234').width);
+    </script>
+</body>
+</html>

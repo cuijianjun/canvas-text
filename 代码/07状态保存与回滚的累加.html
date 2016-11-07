@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #cvs {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="cvs" width="500" height="500"></canvas>
+    <script>
+        var cvs = document.getElementById('cvs');
+        var ctx = cvs.getContext('2d');
+
+        ctx.save();  // 把当前默认的状态保存一份
+
+        ctx.lineWidth = 5;
+        ctx.strokeStyle = 'red';
+        ctx.strokeRect( 10, 10, 30, 30 ); // 按照第一次的状态绘制
+
+        ctx.save();  // 把当前状态保存一份
+        ctx.lineWidth = 10;
+        ctx.fillStyle = 'yellow';
+        ctx.fillRect( 50, 10, 30, 30 ); // 按照第二次的状态绘制
+
+        ctx.save(); // 最后一次保存当前状态
+        ctx.strokeRect( 110, 10, 30, 30 ); // 按照第二次的状态绘制
+
+        ctx.restore(); // 回滚上一次保存的状态
+        ctx.strokeRect( 160, 10, 30, 30 ); // 按照第二次的状态绘制
+        ctx.fillRect( 210, 10, 30, 30 ); // 按照第二次的状态绘制
+
+        ctx.restore();   // 继承回滚到上上一次保存的状态
+        ctx.strokeRect( 260, 10, 30, 30 ); // 按照第一次的状态绘制
+
+        ctx.restore();   // 继承回滚到上上上一次保存的默认状态
+        ctx.strokeRect( 310, 10, 30, 30 ); // 按照默认的状态绘制
+
+        /*
+        * 状态可以保存多份，
+        * 取的时候是倒着取的。
+        * */
+    </script>
+</body>
+</html>

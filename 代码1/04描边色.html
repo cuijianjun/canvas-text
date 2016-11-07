@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #cvs {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+<canvas id="cvs" width="500" height="500"></canvas>
+<script>
+    var cvs = document.getElementById('cvs');
+    var ctx = cvs.getContext('2d');
+
+    /*
+    * 设置描边色
+    * ctx.strokeStyle = 颜色单词、rgb、rgba、css支持的方式这里都支持
+    * */
+
+    console.log(ctx.strokeStyle); // 默认#000000
+
+    ctx.strokeStyle = '#00ff00';
+    ctx.moveTo(10,10);
+    ctx.lineTo(110,10);
+    ctx.stroke();
+</script>
+</body>
+</html>

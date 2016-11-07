@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #cvs {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+<canvas id="cvs" width="500" height="500"></canvas>
+<script>
+    var cvs = document.getElementById('cvs');
+    var ctx = cvs.getContext('2d');
+
+    /*
+     * 获取虚线的绘制规则
+     * ctx.getLineDash()
+     * */
+    console.log(ctx.getLineDash());
+
+    /*
+    * 设置虚线的绘制规则
+    * ctx.setLineDash( [ 实线部分的长度，空白部分的长度 ] )
+    * */
+
+    // 如果传入数组的数量为基数，那么保存时canvas会自动变为偶数的数量存储。
+    ctx.setLineDash([5]);
+    ctx.moveTo( 10 , 10 );
+    ctx.lineTo( 210, 10 );
+    ctx.lineDashOffset = 2;
+    ctx.stroke();
+
+    /*
+    * 设置虚线的偏移量
+    * ctx.lineDashOffset = 2;
+    * */
+</script>
+</body>
+</html>

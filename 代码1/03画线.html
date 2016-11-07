@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #cvs {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="cvs" width="500" height="500"></canvas>
+    <script>
+        var cvs = document.getElementById('cvs');
+        var ctx = cvs.getContext('2d');
+
+        function move(e) {
+            ctx.lineTo( e.pageX - cvs.offsetLeft, e.pageY - cvs.offsetTop );
+            ctx.stroke();
+        }
+
+        // 鼠标按下，moveTo到鼠标的点，从这个点开始画线
+        cvs.addEventListener('mousedown', function (e) {
+            ctx.moveTo( e.pageX - cvs.offsetLeft, e.pageY - cvs.offsetTop );
+            cvs.addEventListener('mousemove', move);
+        });
+
+        // 鼠标放开的时候，解除move事件
+        document.addEventListener('mouseup', function () {
+            cvs.removeEventListener('mousemove', move);
+        });
+    </script>
+</body>
+</html>

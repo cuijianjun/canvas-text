@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #cvs {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+<canvas id="cvs" width="500" height="500"></canvas>
+<script>
+    var cvs = document.getElementById('cvs');
+    var ctx = cvs.getContext('2d');
+
+    /*
+    * 设置文本样式
+    * ctx.font = 语法和css一样。
+    * */
+    ctx.font = '500 2em 微软雅黑'; //加粗 字体大小 字体
+
+    /*
+    * 设置文字水平排列方式
+    * ctx.textAlign = start(left)、center、end(right)
+    * 默认为值为start。
+    * */
+
+    ctx.moveTo( 200, 0 );
+    ctx.lineTo( 200, cvs.height );
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    ctx.textAlign = 'start';
+    ctx.fillStyle = 'deeppink';
+    ctx.fillText( '额那咋地！', 200, 100 );
+    ctx.fillRect( 200, 100, 2, 2 );
+
+    ctx.textAlign = 'center';
+    ctx.fillStyle = 'skyblue';
+    ctx.fillText( '额那咋地！', 200, 200 );
+    ctx.fillRect( 200, 200, 2, 2 );
+
+    ctx.textAlign = 'end';
+    ctx.fillStyle = 'orange';
+    ctx.fillText( '额那咋地！', 200, 300 );
+    ctx.fillRect( 200, 300, 2, 2 );
+
+</script>
+</body>
+</html>

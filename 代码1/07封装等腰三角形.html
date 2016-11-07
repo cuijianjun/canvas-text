@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #cvs {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+<canvas id="cvs" width="500" height="500"></canvas>
+<script>
+    var cvs = document.getElementById('cvs');
+    var ctx = cvs.getContext('2d');
+
+    /*
+    * 画等腰三角形，
+    * 先moveTo到顶点，
+    * 然后lingTo到右下角的点(顶点x + w/2, 顶点y + h)
+    * 然后lingTo到右下角的点(顶点x - w/2, 顶点y + h)
+    * 最后lingTo到顶点
+    * */
+
+    function strokeSJX( x, y, w, h, style ) {
+        ctx.beginPath();   // 为了防止重绘之前的路径，先把他们清除掉
+        ctx.moveTo(x, y);
+        ctx.lineTo(x + w / 2, y + h);
+        ctx.lineTo(x - w / 2, y + h);
+        ctx.lineTo(x, y);
+        ctx.strokeStyle = style;
+        ctx.stroke();
+    }
+
+    strokeSJX( 100, 100, 100, 50, 'red' );
+    strokeSJX( 300, 100, 80, 80, 'green' );
+</script>
+</body>
+</html>

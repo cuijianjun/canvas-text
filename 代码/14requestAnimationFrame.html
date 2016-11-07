@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #cvs {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="cvs" width="500" height="500"></canvas>
+    <script>
+        var cvs = document.getElementById('cvs');
+        var ctx = cvs.getContext('2d');
+
+        /*
+        * requestAnimationFrame
+        * 请求动画帧，这个方法的使用和setTimeout一致，只是不需要传时间。
+        * */
+
+        console.log('普通');
+
+        // 当时间到达的时候，才会调用传入该方法的回调。
+        setTimeout(function () {
+            console.log('setTimeout');
+        },  1000 / 60);
+
+        // 当浏览器要刷新页面的时候，才会调用传入该方法的回调，
+        // 这个方法的执行频率会比较稳定，
+        // 这个方法是专门用来开发动画使用的。
+        requestAnimationFrame( function () {
+            console.log('requestAnimationFrame');
+        });
+
+    </script>
+</body>
+</html>

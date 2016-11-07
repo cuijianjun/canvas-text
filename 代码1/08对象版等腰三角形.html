@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #cvs {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+<canvas id="cvs" width="500" height="500"></canvas>
+<script>
+    var cvs = document.getElementById('cvs');
+    var ctx = cvs.getContext('2d');
+
+    /*
+    * 画等腰三角形，
+    * 先moveTo到顶点，
+    * 然后lingTo到右下角的点(顶点x + w/2, 顶点y + h)
+    * 然后lingTo到右下角的点(顶点x - w/2, 顶点y + h)
+    * 最后lingTo到顶点
+    * */
+
+    function SJX( x, y, w, h, style ) {
+        this.x = x;
+        this.y = y;
+        this.w = w;
+        this.h = h;
+        this.style = style;
+    }
+
+    // 添加一个绘制方法
+    SJX.prototype.draw = function () {
+        ctx.beginPath();   // 为了防止重绘之前的路径，先把他们清除掉
+        ctx.moveTo(this.x, this.y);
+        ctx.lineTo(this.x + this.w / 2, this.y + this.h);
+        ctx.lineTo(this.x - this.w / 2, this.y + this.h);
+        ctx.lineTo(this.x, this.y);
+        ctx.strokeStyle = this.style;
+        ctx.stroke();
+    };
+
+    var sjx = new SJX( 100, 100, 100, 50, 'red' );
+    sjx.draw();
+    console.log(sjx.w);
+</script>
+</body>
+</html>

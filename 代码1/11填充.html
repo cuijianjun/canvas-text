@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #cvs {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+<canvas id="cvs" width="500" height="500"></canvas>
+<script>
+    var cvs = document.getElementById('cvs');
+    var ctx = cvs.getContext('2d');
+
+    function strokeSJX( x, y, w, h, style ) {
+        ctx.beginPath();   // 为了防止重绘之前的路径，先把他们清除掉
+        ctx.moveTo(x, y);
+        ctx.lineTo(x + w / 2, y + h);
+        ctx.lineTo(x - w / 2, y + h);
+        ctx.lineTo(x, y);
+        ctx.strokeStyle = style;
+        ctx.stroke();
+    }
+
+    /*
+    * 填充
+    * ctx.fill();
+    * 这个方法和stroke一样，都是根据当前的路径进行填充。
+    * */
+
+    strokeSJX( 100, 100, 100, 50, 'red' );
+    ctx.fillStyle = 'yellow';
+    ctx.fill();  // 因为现在页面中，已经有了一个三角形的路径，所以调用fill时，会根据这个路径填充
+
+    /*
+    * 设置填充色
+    * ctx.fillStyle = css所有颜色的表示方式，这里都支持
+    * */
+
+</script>
+</body>
+</html>

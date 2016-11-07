@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #cvs {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="cvs" width="500" height="500"></canvas>
+    <script>
+        var cvs = document.getElementById('cvs');
+        var ctx = cvs.getContext('2d');
+
+        /*
+        * arc ：画弧路径
+        * 语法：ctx.arc( 圆心x轴坐标，圆心y轴坐标，半径，起始弧度，结束弧度，是否逆时针画(可选) )
+        * arc方法会先使用lineTo方法移动到弧的起始位置，然后开始画弧。
+        * */
+
+        /*
+        * 180度 等于 1PI弧度
+        * 360度 等于 2PI弧度
+        * */
+
+        // 默认顺时针画弧
+        ctx.arc( 100, 200, 50, Math.PI / 2, Math.PI );
+        ctx.stroke();
+
+        // 逆时针画弧
+        ctx.beginPath(); // beginPath后，第一个lineTo就相当于是moveTo
+        ctx.arc( 220, 200, 50, Math.PI / 2, Math.PI, true );
+        ctx.stroke();
+
+        // 画圆形
+        ctx.beginPath();
+        ctx.arc( 340, 200, 50, 0, Math.PI * 2);
+        ctx.stroke();
+    </script>
+</body>
+</html>

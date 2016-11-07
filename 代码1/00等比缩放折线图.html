@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #cvs {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+<canvas id="cvs" width="500" height="500"></canvas>
+<script>
+    var cvs = document.getElementById('cvs');
+    var ctx = cvs.getContext('2d');
+
+    // 定义坐标轴距离画布的边距
+    var paddingLeft = 10;
+    var paddingTop = 10;
+    var paddingRight = 10;
+    var paddingBottom = 10;
+
+    // 箭头的宽高
+    var arrow = {
+        w: 10,
+        h: 20
+    };
+
+    // 先画坐标轴中的竖线
+    // 竖线的顶点坐标为( paddingLeft, paddingTop );
+    // 原点的坐标为( paddingLeft, cvs.height -  paddingBottom );
+    // 横线的顶点坐标为( cvs.width - paddingRight, cvs.height -  paddingBottom );
+    var s = {
+        x: paddingLeft,
+        y: paddingTop
+    };
+    var o = {
+        x: paddingLeft,
+        y: cvs.height -  paddingBottom
+    };
+    var h = {
+        x: cvs.width - paddingRight,
+        y: cvs.height -  paddingBottom
+    };
+
+    // 画坐标轴的两条线
+    ctx.moveTo( s.x, s.y );
+    ctx.lineTo( o.x, o.y );
+    ctx.lineTo( h.x, h.y );
+
+    // 先画竖线箭头
+    ctx.moveTo( s.x, s.y );
+    ctx.lineTo( s.x - arrow.w / 2, s.y + arrow.h );
+    ctx.moveTo( s.x, s.y );
+    ctx.lineTo( s.x + arrow.w / 2, s.y + arrow.h );
+
+    // 再画横线箭头
+    ctx.moveTo( h.x, h.y );
+    ctx.lineTo( h.x - arrow.h, h.y - arrow.w / 2 );
+    ctx.moveTo( h.x, h.y );
+    ctx.lineTo( h.x - arrow.h, h.y + arrow.w / 2 );
+
+    ctx.stroke();
+
+    /*
+     * 在10，10位置画一点:
+     * 该点坐标的算法：
+     * x轴 = 原点的x轴 + 该点和原点的距离
+     * y轴 = 原点的y轴 - 该点和原点的距离
+     * */
+    // ctx.fillRect( o.x + 10, o.y - 10, 1, 1 );
+
+
+    /*
+     * 需求：在自定义的坐标轴中画出如下数据的折线图
+     * */
+    var points = [ 10, 10, 30, 30, 50, 30, 70, 40, 110, 150 ];
+
+
+
+    /*
+    * 求自定义画布可显示的最大刻度：
+    * x轴：画布的宽度 - paddingLeft - paddingRight - arrow.h
+    * y轴：画布的高度 - paddingTop - paddingBottom - arrow.h
+    * */
+    var maxKD = {
+        x: cvs.width - paddingLeft - paddingRight - arrow.h,
+        y: cvs.height - paddingTop - paddingBottom - arrow.h
+    };
+
+    // 把偶数存储到pointXs里，基数存储到pointYs里。
+    var pointXs = [];
+    var pointYs = [];
+    for ( var i = 0, len = points.length; i< len; i++ ) {
+        if ( i % 2 === 0 ) {
+            pointXs.push( points[i] );
+        }else {
+            pointYs.push( points[i] );
+        }
+    }
+
+    /*
+    * 求要显示的数据点中的最大值
+    * x轴：Math.max.apply(null, pointXs)
+    * y轴：Math.max.apply(null, pointYs)
+    * */
+    var pointsMaxX = Math.max.apply(null, pointXs);
+    var pointsMaxY = Math.max.apply(null, pointYs);
+
+    /*
+     * 求比例的算法：
+     * 缩放的x轴比例 =  自定义画布可显示最大x轴刻度 / 要显示的数据点中最大的x轴数据
+     * 缩放的y轴比例 = 自定义画布可显示最大y轴刻度 / 要显示的数据点中最大的y轴数据
+     * */
+    var ratioX = maxKD.x / pointsMaxX;
+    var ratioY = maxKD.y / pointsMaxY;
+
+    // 求出比例之后，下面在绘制点和线时，
+    // 获取到的点数据都要*这个比例，这样绘制的点数据就会被缩放,
+    // 然后根据缩放后的点数据，算出坐标，进而画点与线。
+
+    // 先画点
+    for ( var i = 0, len = points.length; i < len; i+=2 ) {
+        ctx.fillRect( o.x + points[i] * ratioX, o.y - points[i+1] * ratioY, 3, 3 );
+    }
+
+    ctx.beginPath(); // 新开辟路径，现在就没有任何路径，以及路径的起点和结束点了。
+
+    // 再画折线
+    for ( var i = 0, len = points.length; i < len; i+=2 ) {
+        ctx.lineTo( o.x + points[i]  * ratioX, o.y - points[i+1]  * ratioY );
+    }
+    ctx.stroke();
+
+
+</script>
+</body>
+</html>

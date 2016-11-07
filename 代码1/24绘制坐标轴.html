@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #cvs {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="cvs" width="500" height="500"></canvas>
+    <script>
+        var cvs = document.getElementById('cvs');
+        var ctx = cvs.getContext('2d');
+
+        // 定义坐标轴距离画布的边距
+        var paddingLeft = 10;
+        var paddingTop = 10;
+        var paddingRight = 10;
+        var paddingBottom = 10;
+
+        // 箭头的宽高
+        var arrow = {
+            w: 10,
+            h: 20
+        };
+
+        // 先画坐标轴中的竖线
+        // 竖线的顶点坐标为( paddingLeft, paddingTop );
+        // 原点的坐标为( paddingLeft, cvs.height -  paddingBottom );
+        // 横线的顶点坐标为( cvs.width - paddingRight, cvs.height -  paddingBottom );
+
+        //竖线的顶点坐标
+        var s = {
+            x: paddingLeft,
+            y: paddingTop
+        };
+        //原点的坐标
+        var o = {
+            x: paddingLeft,
+            y: cvs.height -  paddingBottom
+        };
+        //横线的顶点坐标
+        var h = {
+            x: cvs.width - paddingRight,
+            y: cvs.height -  paddingBottom
+        };
+
+        // 画坐标轴的两条线
+        ctx.moveTo( s.x, s.y );
+        ctx.lineTo( o.x, o.y );
+        ctx.lineTo( h.x, h.y );
+
+        // 先画竖线箭头
+        ctx.moveTo( s.x, s.y );
+        ctx.lineTo( s.x - arrow.w / 2, s.y + arrow.h );
+        ctx.moveTo( s.x, s.y );
+        ctx.lineTo( s.x + arrow.w / 2, s.y + arrow.h );
+
+        // 再画横线箭头
+        ctx.moveTo( h.x, h.y );
+        ctx.lineTo( h.x - arrow.h, h.y - arrow.w / 2 );
+        ctx.moveTo( h.x, h.y );
+        ctx.lineTo( h.x - arrow.h, h.y + arrow.w / 2 );
+
+        ctx.stroke();
+    </script>
+</body>
+</html>

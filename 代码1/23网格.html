@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #cvs {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="cvs" width="500" height="500"></canvas>
+    <script>
+        var cvs = document.getElementById('cvs');
+        var ctx = cvs.getContext('2d');
+
+        // 通过cvs的width和height属性，可以获取画布的宽和高
+        console.log(cvs.width);
+        console.log(cvs.height);
+
+        /*
+        * 画网格，
+        * 先画N多横线，
+        * 再画N多竖线。
+        * */
+        // 画宽为10，高为10的网格
+        var w = 10, h = 10,
+            cvsW = cvs.width,
+            cvsH = cvs.height;
+
+        // 先画横线
+        for ( var i = 1, num = cvsH / h; i < num; i++ ) {
+            ctx.moveTo( 0, h * i );
+            ctx.lineTo( cvsW, h * i );
+        }
+        // 再画竖线
+        for ( var i = 1, num = cvsW / w; i < num; i++ ) {
+            ctx.moveTo( w * i, 0 );
+            ctx.lineTo( w * i, cvsH );
+        }
+        ctx.stroke();
+    </script>
+</body>
+</html>

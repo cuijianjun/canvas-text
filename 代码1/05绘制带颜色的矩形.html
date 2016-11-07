@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #cvs {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <!--canvas是用来展示绘制效果的标签，他相当于img标签，用来展示图片-->
+    <canvas id="cvs" width="500" height="500"></canvas>
+    <script>
+        var cvs = document.getElementById('cvs');
+        var ctx = cvs.getContext( '2d' );
+
+        ctx.strokeStyle = 'red';
+        ctx.moveTo(10, 10);
+        ctx.lineTo(110, 10);
+        ctx.lineTo(110, 110);
+        ctx.lineTo(10, 110);
+        ctx.lineTo(10, 10);
+        ctx.stroke();
+
+        ctx.strokeStyle = 'blue';
+        ctx.moveTo(100, 10);
+        ctx.lineTo(210, 10);
+        ctx.lineTo(210, 110);
+        ctx.lineTo(10, 110);
+        ctx.lineTo(10, 10);
+        alert(1);
+        ctx.stroke();
+
+        /*
+        * 路径可以被绘制多次；
+        * 而stroke每次调用都会根据当前的所有路径进行图形绘制。
+        * */
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #cvs {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="cvs" width="500" height="500"></canvas>
+    <script>
+        var cvs = document.getElementById('cvs');
+        var ctx = cvs.getContext('2d');
+
+        var img = new Image();
+        img.src = './imgs/NPCrabbitbaby.png';
+        img.addEventListener('load', function () {
+            var index = 0;
+            setInterval(function () {
+                ctx.clearRect(0, 0, cvs.width, cvs.height);
+
+                // 裁剪的x轴坐标控制着每一个方向的不同动作
+                // 裁剪的y轴坐标控制着小人行走的方向
+                ctx.drawImage( img,
+                        40 * index, 65 * 0, 40, 65,
+                        10, 10, 40, 65);
+
+                index = ++index > 3? 0 : index;
+            }, 1000 / 10);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        /*
+        * map ：ES5提供的用来遍历数组的方法，该方法来自Array.prototype
+        * map方法会接收返回值，把返回值组成一个新的数组。
+        *
+        * 语法：数组.map(function ( val, index, arr ) { return val * 10 });
+        * map会自动帮我们遍历数组，每遍历到数组中的一个值，
+        * 就会调用回调，并且给回调传三个参数：遍历到的值，该值的下标，原数组,
+        * 然后接收回调的返回值，最终构成新数组返回。
+        * */
+
+        var arr = ['a','b','c','d'];
+        var newArr = arr.map(function ( val, index, arr ){
+            return val + 'pp';
+        });
+        console.log(newArr);
+
+        var arr2 = [11,22,33,44];
+        var newArr2 = arr2.map(function ( val ) {
+            return val * 5;
+        });
+        console.log(newArr2);
+    </script>
+</body>
+</html>

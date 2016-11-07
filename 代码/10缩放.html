@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #cvs {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="cvs" width="500" height="500"></canvas>
+    <script>
+        var cvs = document.getElementById('cvs');
+        var ctx = cvs.getContext('2d');
+
+        /*
+        * 缩放
+        * ctx.scale( 在当前基础上x轴缩放多少倍，在当前基础上y轴缩放多少倍 )
+        * 这里缩放的是画布的坐标系，缩放不会影响已经绘制好的图形，缩放会累加。
+        * */
+
+        ctx.fillStyle = 'skyblue';
+        ctx.fillRect( 0, 0, 100, 100 );
+
+        // x轴放大一倍，y轴缩小一倍
+        ctx.scale( 2, 0.5 );
+        ctx.fillStyle = 'deeppink';
+        ctx.fillRect( 0, 0, 100, 100 );
+
+        // x轴放大一倍，y轴缩小一倍
+        ctx.scale( 2, 0.5 );
+        ctx.fillStyle = 'orange';
+        ctx.fillRect( 0, 0, 100, 100 );
+    </script>
+</body>
+</html>

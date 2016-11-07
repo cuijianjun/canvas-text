@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #cvs {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="cvs" width="500" height="500"></canvas>
+    <script>
+        var cvs = document.getElementById('cvs');
+        var ctx = cvs.getContext('2d');
+
+        function angleToRadian( angle ) {
+            return Math.PI / 180 * angle;
+        }
+
+
+        var x = 100, y = 100, r = 50;
+        ctx.arc( x, y, r, 0, Math.PI * 2 );
+        ctx.stroke();
+
+        /*
+         * 在圆的45度地方，画一个点
+         * 求该点的x轴坐标：圆心x坐标 + 半径 * Math.cos( angleToRadian(45) );
+         * 求该点的y轴坐标：圆心y坐标 + 半径 * Math.sin( angleToRadian(45) );
+         * */
+        ctx.beginPath();
+        ctx.arc( x + r * Math.cos( angleToRadian(45) ),
+                 y + r * Math.sin( angleToRadian(45) ),
+                4, 0, Math.PI * 2);
+        ctx.fillStyle = 'blue';
+        ctx.fill();
+    </script>
+</body>
+</html>

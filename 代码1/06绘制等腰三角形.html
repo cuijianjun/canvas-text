@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #cvs {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+<canvas id="cvs" width="500" height="500"></canvas>
+<script>
+    var cvs = document.getElementById('cvs');
+    var ctx = cvs.getContext('2d');
+
+    /*
+    * 画等腰三角形，
+    * 先moveTo到顶点，
+    * 然后lingTo到右下角的点(顶点x + w/2, 顶点y + h)
+    * 然后lingTo到右下角的点(顶点x - w/2, 顶点y + h)
+    * 最后lingTo到顶点
+    * */
+
+    // 在100，100点绘制一个宽50，高50，天空蓝的等腰三角形
+    ctx.moveTo(100, 100);
+    ctx.lineTo(100 + 50 / 2, 100 + 50);
+    ctx.lineTo(100 - 50 / 2, 100 + 50);
+    ctx.lineTo(100, 100);
+    ctx.strokeStyle = 'skyblue';
+    ctx.stroke();
+
+    // 为了防止重绘上面的三角形路径，需要把这个路径先清除掉
+    ctx.beginPath();
+
+    // 在200，100点绘制一个宽50，高50，红色的等腰三角形
+    ctx.moveTo(200, 100);
+    ctx.lineTo(200 + 50 / 2, 100 + 50);
+    ctx.lineTo(200 - 50 / 2, 100 + 50);
+    ctx.lineTo(200, 100);
+    ctx.strokeStyle = 'red';
+    ctx.stroke();
+
+    /*
+    * 如何在stroke的时候，不会重绘(重绘会产生覆盖)之前的图形。
+    *
+    * 需要使用一个开辟新路径的API：
+    * ctx.beginPath();
+    * 清除当前所有的路径。
+    * */
+</script>
+</body>
+</html>

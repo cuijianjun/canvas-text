@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #cvs {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="cvs" width="300" height="300"></canvas>
+    <script>
+        var cvs = document.getElementById('cvs');
+        var ctx = cvs.getContext('2d');
+
+        ctx.font = '50 2em 微软雅黑';
+        // 左上角绘制文字
+        ctx.textAlign = 'left';
+        ctx.textBaseline = 'top';
+        ctx.fillText( '左上角绘制文字', 0, 0 );
+
+        // 右上角绘制文字
+        ctx.textAlign = 'right';
+        ctx.textBaseline = 'top';
+        ctx.fillText( '右上角绘制文字', cvs.width, 0 );
+
+        // 左下角绘制文字
+        ctx.textAlign = 'start';
+        ctx.textBaseline = 'bottom';
+        ctx.fillText( '左下角绘制文字', 0, cvs.height );
+
+        // 右下角绘制文字
+        ctx.textAlign = 'end';
+        ctx.textBaseline = 'bottom';
+        ctx.fillText( '右下角绘制文字',  cvs.width, cvs.height );
+    </script>
+</body>
+</html>

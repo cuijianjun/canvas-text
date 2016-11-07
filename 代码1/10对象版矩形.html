@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #cvs {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+<canvas id="cvs" width="500" height="500"></canvas>
+<script>
+    var cvs = document.getElementById('cvs');
+    var ctx = cvs.getContext('2d');
+
+    // 矩形构造函数
+    function JX( x, y, w, h, style, lineW ) {
+        this.x = x;
+        this.y = y;
+        this.w = w;
+        this.h = h;
+        this.style = style;
+        this.lineW = lineW;
+    }
+
+    // 绘制方法
+    JX.prototype.draw = function () {
+        ctx.beginPath();  // 防止重绘之前的路径
+        ctx.moveTo( this.x, this.y );
+        ctx.lineTo( this.x + this.w, this.y );
+        ctx.lineTo( this.x + this.w, this.y + this.h );
+        ctx.lineTo( this.x, this.y + this.h );
+        ctx.closePath();  // 路径结束点与起点相连，解决锯齿，省去最后一条线
+        ctx.strokeStyle = this.style;
+        ctx.lineWidth = this.lineW;
+        ctx.stroke();
+    };
+
+    // 创建实例
+    var jx = new JX( 10, 10, 100, 100, 'deeppink', 1 );
+    jx.draw();
+
+    /*
+    * 不断的清除之前的矩形，然后重新绘制(新绘制的矩形相当于之前的矩形x轴向右移动)
+    * */
+    setInterval(function () {
+        // 清除画布上全部的内容
+        ctx.clearRect( 0, 0, 500, 500 );
+        jx.x += 1;
+        jx.draw();
+    }, 10);
+
+    /*
+    * 清除画布
+    * ctx.clearRect( 擦除矩形的左上角x轴坐标，擦除矩形的左上角y轴坐标，擦除的宽，擦除的高 )
+    * */
+
+</script>
+</body>
+</html>

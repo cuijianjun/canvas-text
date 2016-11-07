@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #cvs {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+<canvas id="cvs" width="500" height="500"></canvas>
+<script>
+    var cvs = document.getElementById('cvs');
+    var ctx = cvs.getContext('2d');
+
+    function JX( x, y, w, h, direction ) {
+        var i = 0, lineNum;
+
+        // 如果是横方式，线的总数为宽度；
+        // 如果是竖方式，线的总数为高度。
+        lineNum = direction === 'h'? w : h;
+
+        // 分别画每一条不同颜色的线，共同组成一个渐变矩形
+        for ( ; i < lineNum; i++ ) {
+            ctx.beginPath();
+            if ( direction === 'h' ) {
+                ctx.moveTo( x + i, y);
+                ctx.lineTo( x + i, y + h);
+            }else {
+                ctx.moveTo( x, y + i);
+                ctx.lineTo( x + w, y + i);
+            }
+            ctx.strokeStyle = 'rgb(' + Math.ceil(255 / lineNum * i) + ', 0, 0)';
+            ctx.stroke();
+        }
+    }
+
+    // 测试
+    JX( 10, 10, 100, 100, 'h' );
+    JX( 210, 10, 80, 100 );
+</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #cvs {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="cvs" width="500" height="500"></canvas>
+    <script>
+        var cvs = document.getElementById('cvs');
+        var ctx = cvs.getContext('2d');
+
+        /*
+        * 旋转
+        * ctx.rotate( 在当前基础上旋转多少弧度 )
+        * 这里旋转的是画布的坐标系，旋转不会影响已经绘制好的图形，旋转会累加。
+        * */
+
+        ctx.translate( 100, 100 );
+        ctx.fillStyle = 'blue';
+        ctx.fillRect( 10, 10, 50, 50 );
+
+        // 坐标系旋转30度
+        ctx.rotate( Math.PI / 6 );
+        ctx.fillStyle = 'red';
+        ctx.fillRect( 10, 10, 50, 50 );
+
+        // 坐标系旋转30度
+        ctx.rotate( Math.PI / 6 );
+        ctx.fillStyle = 'yellow';
+        ctx.fillRect( 10, 10, 50, 50 );
+    </script>
+</body>
+</html>

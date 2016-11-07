@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #cvs {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="cvs" width="500" height="500"></canvas>
+    <script>
+        var cvs = document.getElementById('cvs');
+        var ctx = cvs.getContext('2d');
+
+        // 定义坐标轴距离画布的边距
+        var paddingLeft = 10;
+        var paddingTop = 10;
+        var paddingRight = 10;
+        var paddingBottom = 10;
+
+        // 箭头的宽高
+        var arrow = {
+            w: 10,
+            h: 20
+        };
+
+        // 先画坐标轴中的竖线
+        // 竖线的顶点坐标为( paddingLeft, paddingTop );
+        // 原点的坐标为( paddingLeft, cvs.height -  paddingBottom );
+        // 横线的顶点坐标为( cvs.width - paddingRight, cvs.height -  paddingBottom );
+        var s = {
+            x: paddingLeft,
+            y: paddingTop
+        };
+        var o = {
+            x: paddingLeft,
+            y: cvs.height -  paddingBottom
+        };
+        var h = {
+            x: cvs.width - paddingRight,
+            y: cvs.height -  paddingBottom
+        };
+
+        // 画坐标轴的两条线
+        ctx.moveTo( s.x, s.y );
+        ctx.lineTo( o.x, o.y );
+        ctx.lineTo( h.x, h.y );
+
+        // 先画竖线箭头
+        ctx.moveTo( s.x, s.y );
+        ctx.lineTo( s.x - arrow.w / 2, s.y + arrow.h );
+        ctx.moveTo( s.x, s.y );
+        ctx.lineTo( s.x + arrow.w / 2, s.y + arrow.h );
+
+        // 再画横线箭头
+        ctx.moveTo( h.x, h.y );
+        ctx.lineTo( h.x - arrow.h, h.y - arrow.w / 2 );
+        ctx.moveTo( h.x, h.y );
+        ctx.lineTo( h.x - arrow.h, h.y + arrow.w / 2 );
+
+        ctx.stroke();
+
+        /*
+        * 在10，10位置画一点:
+        * 该点坐标的算法：
+        * x轴 = 原点的x轴 + 该点和原点的距离
+        * y轴 = 原点的y轴 - 该点和原点的距离
+        * */
+        // ctx.fillRect( o.x + 10, o.y - 10, 1, 1 );
+
+
+        /*
+        * 需求：在自定义的坐标轴中画出如下数据的折线图
+        * */
+        var points = [ 10, 10, 30, 30, 50, 30, 70, 40, 110, 150 ];
+
+        // 先画点
+        for ( var i = 0, len = points.length; i < len; i+=2 ) {
+            ctx.fillRect( o.x + points[i], o.y - points[i+1], 3, 3 );
+        }
+
+        ctx.beginPath(); // 新开辟路径，现在就没有任何路径，以及路径的起点和结束点了。
+
+        // 再画折线
+        for ( var i = 0, len = points.length; i < len; i+=2 ) {
+            ctx.lineTo( o.x + points[i], o.y - points[i+1] );
+        }
+        ctx.stroke();
+    </script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #cvs {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="cvs" width="500" height="500"></canvas>
+    <script>
+        var cvs = document.getElementById('cvs');
+        var ctx = cvs.getContext('2d');
+
+        /*
+        * constructor { Coordinate } 坐标轴构造函数
+        * param { paddings: Array } 坐标轴距离画布上、右、下、左的距离
+        * param { arrow: Array } 里面存储坐标轴中箭头的宽高
+        * */
+        function Coordinate( ctx, paddings, arrow ) {
+
+            // 绘图上下文
+            this.ctx = ctx;
+
+            // 坐标轴与画布的路径
+            paddings = paddings || [];
+            this.paddingTop = paddings[0] || 10;
+            this.paddingRight = paddings[1] || 10;
+            this.paddingBottom = paddings[2] || 10;
+            this.paddingLeft = paddings[3] || 10;
+
+            // 坐标轴中箭头的宽高
+            arrow = arrow || [];
+            this.arrowWidth = arrow[0] || 10;
+            this.arrowHeight = arrow[1] || 20;
+
+            // 坐标轴中上顶点的坐标
+            this.s = {
+                x: this.paddingLeft,
+                y: this.paddingTop
+            }
+            // 坐标轴中原点的坐标右顶点
+            this.o = {
+                x: this.paddingLeft,
+                y: this.ctx.canvas.height - this.paddingBottom
+            }
+            // 坐标轴中右顶点的坐标
+            this.h = {
+                x: this.ctx.canvas.width - this.paddingRight,
+                y: this.ctx.canvas.height - this.paddingBottom
+            }
+
+        }
+
+        Coordinate.prototype = {
+
+            // 绘制坐标轴中的两条线
+            drawLine: function () {
+                this.ctx.beginPath();
+                this.ctx.moveTo( this.s.x, this.s.y );
+                this.ctx.lineTo( this.o.x, this.o.y );
+                this.ctx.lineTo( this.h.x, this.h.y );
+                this.ctx.stroke();
+            },
+
+            // 绘制坐标轴中的两个箭头
+            drawArrow: function () {
+                this.ctx.beginPath();
+
+                // 先画上箭头
+                this.ctx.moveTo( this.s.x, this.s.y );
+                this.ctx.lineTo( this.s.x - this.arrowWidth / 2, this.s.y + this.arrowHeight );
+                this.ctx.lineTo( this.s.x, this.s.y + this.arrowHeight / 2 );
+                this.ctx.lineTo( this.s.x + this.arrowWidth / 2, this.s.y + this.arrowHeight );
+                this.ctx.lineTo( this.s.x, this.s.y );
+
+                // 再画右箭头
+                this.ctx.moveTo( this.h.x, this.h.y );
+                this.ctx.lineTo( this.h.x - this.arrowHeight, this.h.y - this.arrowWidth / 2 );
+                this.ctx.lineTo( this.h.x - this.arrowHeight / 2, this.h.y );
+                this.ctx.lineTo( this.h.x - this.arrowHeight, this.h.y + this.arrowWidth / 2 );
+                this.ctx.lineTo( this.h.x, this.h.y );
+
+                this.ctx.stroke();
+            }
+        };
+
+        var coord = new Coordinate( ctx );
+        coord.drawLine();
+        coord.drawArrow();
+    </script>
+</body>
+</html>

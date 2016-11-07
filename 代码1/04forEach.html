@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        /*
+        * forEach ：ES5提供的用来遍历数组的方法，该方法来自Array.prototype
+        * 语法：数组.forEach(function ( val, index, arr ) {});
+        * forEach会自动帮我们遍历数组，每遍历到数组中的一个值，
+        * 就会调用回调，并且给回调传三个参数：遍历到的值，该值的下标，原数组
+        * */
+
+        var arr = ['a','b','c','d'];
+        arr.forEach(function ( val, index, arr ){
+            console.log(val, index, arr);
+        });
+    </script>
+</body>
+</html>
